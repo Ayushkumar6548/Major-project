@@ -21,7 +21,6 @@ app.get("/", (req, res) => {
     res.send("this is working properly");
 });
 
-//UPDATE ROUTE
 //Update Route
 app.put("/listings/:id", async (req, res) => {
     let { id } = req.params;
@@ -33,6 +32,10 @@ app.post("/listings", async (req, res) => {
     const newListing = new listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
+});
+
+app.get("/listings/new", (req, res) => {
+    res.render("listings/new.ejs");
 });
 //index route 
 app.get("/listings", async (req, res) => {
@@ -53,9 +56,7 @@ app.delete("/listings/:id", async (req, res) => {
     res.redirect("/listings");
 });
 //new route
-app.get("/listings/new", (req, res) => {
-    res.render("listings/new.ejs");
-});
+
 
 // app.get("/testListing", async (req, res) => {
 //     let sampleListing = new listing({
