@@ -4,10 +4,13 @@ const mongoose = require("mongoose");
 const listing = require("./models/listing.js");
 const path = require("path");
 const method_override = require("method-override");
+const ejsmate = require("ejs-mate");
+app.engine("ejs", ejsmate);
 app.use(method_override("_method"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "/public")));
 
 let mongo_url = "mongodb://127.0.0.1:27017/wanderlust";
 main().then(() => { console.log("sucessfully connect to the Database"); })
