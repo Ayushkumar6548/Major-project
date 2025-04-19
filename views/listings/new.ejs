@@ -1,43 +1,65 @@
 <% layout("/layouts/boilerplate")%>
 
     <body>
-        
+
         <div class="row mt-3">
             <div class="col-8 offset-2">
                 <h3>Create a New Listing</h3>
-                <form method="POST" action="/listings">
+                <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label"></label>
-                        <input name="listing[title]" placeholder="enter title" type="text" class="form-control" />
+                        <input required name="listing[title]" placeholder="enter title" type="text"
+                            class="form-control" />
+                        <div class="invalid-feedback">
+                            please enter the title.
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label"></label>
-                        <textarea name="listing[description]" placeholder="enter description"
+                        <textarea required name="listing[description]" placeholder="enter description"
                             class="form-control"></textarea>
+                        <div class="invalid-feedback">
+                            Please write a short description .
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="link" class="form-label"></label>
-                        <input name="listing[image]" placeholder="enter image URL/Link" type="text"
-                            class="form-control" />
+                        <label for="image" class="form-label"></label>
+                        <input name="listing[image]" placeholder="upload listing image" type="file" class="form-control"
+                            required />
+                        <div class="invalid-feedback">
+                            Enter the url
+                        </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-4"> <label for="price" class="form-label"></label>
-                            <input name="listing[price]" placeholder="enter price" type="number" class="form-control" />
+                            <input required name="listing[price]" placeholder="enter price" type="number"  min="0"
+                             class="form-control" class="form-control is-valid" />
+                            <div class="valid-feedback">
+                                Price should be greater than 0
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter the price.
+                            </div>
                         </div>
                         <div class="mb-3 col-md-8"><label for="country" class="form-label"></label>
-                            <input name="listing[country]" placeholder="enter country" type="text"
+                            <input required name="listing[country]" placeholder="enter country" type="text"
                                 class="form-control" />
+                            <div class="invalid-feedback">
+                                Enter the valid country name.
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="country " class=" form-label"></label>
-                        <input name="listing[location]" placeholder="enter location" type="text" class="form-control" />
+                        <input required name="listing[location]" placeholder="enter location" type="text"
+                            class="form-control" />
+                        <div class="invalid-feedback">
+                            Please enter valid location.
+                        </div>
                     </div>
-                    
+
                     <button class="btn  add-btn mt-3">Add</button>
                 </form>
             </div>
         </div>
     </body>
-
-    </html>
